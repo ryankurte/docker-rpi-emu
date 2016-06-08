@@ -47,3 +47,6 @@ run-emu: build bootstrap
 	@echo "Launching interactive emulated session"
 	@docker run $(RUN_ARGS) /bin/bash -c './run.sh images/$(IMAGE)'
 
+test: build bootstrap
+	@echo "Running test command"
+	@docker run $(RUN_ARGS) /bin/bash -c './run.sh images/$(IMAGE) "uname -a"'
