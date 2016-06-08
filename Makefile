@@ -26,15 +26,15 @@ images/$(IMAGE):
 	touch $@
 
 # Expand the image by a specified size
-expand: build
+expand: build bootstrap
 	dd if=/dev/zero bs=1M count=1024 >> images/$(IMAGE)
 	docker run $(RUN_ARGS) ./expand.sh images/$(IMAGE) 1024
 
 # Launch the docker image without running any of the utility scripts
-run: build
+run: build bootstrap
 	docker run $(RUN_ARGS) /bin/bash 
 
 # Launch the docker image into an emulated session
-run-emu: build
-	docker run $(RUN_ARGS) /bin/bash -c './run.sh images/$(IMAGE) /media/rpi'
+run-emu: build bootstrap
+	docker run $(RUN_ARGS) /bin/bash -c './run.sh images/$(IMAGE)'
 

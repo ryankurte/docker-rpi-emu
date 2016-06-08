@@ -1,33 +1,39 @@
 #!/bin/bash
 # Convenience script to manage qemu inside docker container
 
-if [ "$#" -ne 2 ] && [ "$#" -ne 3 ]; then 
+if [ "$#" -ne 1 ] && [ "$#" -ne 2 ]; then 
     echo "Usage: $0 IMAGE MOUNT [COMMAND]"
     echo "IMAGE - raspberry pi .img file"
-    echo "MOUNT - mount location in the file system"
-    echo "COMMAND - optional command to execute, defaults to /bin/bash"
+    echo "[COMMAND] - optional command to execute, defaults to /bin/bash"
     exit
 fi
 
 CWD=`pwd`
+MOUNT_DIR=/media/rpi
+
+if [ -z "$2" ]; then
+	COMMAND=bin/bash
+else
+	COMMAND=$2
+fi
 
 set -e
 
 # Create mount dir
-mkdir -p $2
+mkdir -p $MOUNT_DIR
 
 # Mount ISO
-./mount.sh $1 $2
+./mount.sh $1 $MOUNT_DIR
 
 # Bootstrap QEMU
-./qemu-setup.sh $2
+./qemu-setup.sh $MOUNT_DIR
 
 # Launch QEMU
-chroot $2 bin/bash
+chroot $MOUNT_DIR $COMMAND
 
 # Remove QEMU
-./qemu-cleanup.sh $2
+./qemu-cleanup.sh $MOUNT_DIR
 
 # Exit 
-./unmount.sh $2
+./unmount.sh $MOUNT_DIR
 
