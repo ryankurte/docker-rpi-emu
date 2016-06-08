@@ -17,17 +17,19 @@ MOUNT_DIR=/media/rpi
 
 # Build the docker image
 build:
-	docker build -t ryankurte/docker-rpi-emu .
+	@echo "Building base docker image"
+	@docker build -t ryankurte/docker-rpi-emu .
 
 # Bootstrap a RPI image into the images directory
 bootstrap: images/$(IMAGE)
 
 # Fetch the RPI image from the path above
 images/$(IMAGE):
-	mkdir -p images
+	@echo "Pulling Raspbian image"
+	@mkdir -p images
 	wget -O images/$(ZIP) -c $(PATH)
-	unzip -d images/ images/$(ZIP)
-	touch $@
+	@unzip -d images/ images/$(ZIP)
+	@touch $@
 
 # Expand the image by a specified size
 # TODO: implement expand script to detect partition sizes
@@ -37,9 +39,11 @@ expand: build bootstrap
 
 # Launch the docker image without running any of the utility scripts
 run: build bootstrap
-	docker run $(RUN_ARGS) /bin/bash 
+	@echo "Launching interactive docker session"
+	@docker run $(RUN_ARGS) /bin/bash 
 
 # Launch the docker image into an emulated session
 run-emu: build bootstrap
-	docker run $(RUN_ARGS) /bin/bash -c './run.sh images/$(IMAGE)'
+	@echo "Launching interactive emulated session"
+	@docker run $(RUN_ARGS) /bin/bash -c './run.sh images/$(IMAGE)'
 
