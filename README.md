@@ -9,7 +9,7 @@ This project provides a dockerised (err, containerised) Qemu based emulated envi
 
 Check it out on [Github](https://github.com/ryankurte/docker-rpi-emu/) or [Dockerhub](https://hub.docker.com/r/ryankurte/docker-rpi-emu/)  
 
-![Example](https://raw.github.com/ryankurte/docker-rpi-emu/gh_pages/screenshots/01.png)
+![Example](https://raw.github.com/ryankurte/docker-rpi-emu/gh_pages/screenshots/02.png)
 
 ## Usage
 
