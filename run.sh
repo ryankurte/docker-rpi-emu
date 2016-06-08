@@ -13,6 +13,9 @@ CWD=`pwd`
 
 set -e
 
+# Create mount dir
+mkdir -p $2
+
 # Mount ISO
 ./mount.sh $1 $2
 
