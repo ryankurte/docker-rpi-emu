@@ -7,7 +7,7 @@ Then this is the project for you!
 
 This project provides a dockerised (err, containerised) Qemu based emulated environment for the Raspberry Pi, useful for building Raspberry Pi based projects on x86/x64 computers, and for customising Raspbian images for distribution.  
 
-Check it out on [Dockerhub](https://hub.docker.com/r/ryankurte/docker-rpi-emu/)  
+Check it out on [Github](https://github.com/ryankurte/docker-rpi-emu/) or [Dockerhub](https://hub.docker.com/r/ryankurte/docker-rpi-emu/)  
 
 ## Components
 
