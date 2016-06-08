@@ -1,4 +1,5 @@
 # Example makefile demonstrating the use of the emulated container to prepare a build environment
+# This makefile is standalone, and can be used as the basis of projects that build applications or images for the RPi
 
 DATE=2016-05-27
 
@@ -60,4 +61,4 @@ copy: pull bootstrap resources
 setup: copy
 	@docker run $(RUN_ARGS) /bin/bash -c './run.sh images/$(IMAGE) /usr/resources/setup.sh'
 
-	
+
