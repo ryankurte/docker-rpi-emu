@@ -22,7 +22,6 @@ RUN mkdir -p /usr/rpi
 WORKDIR /usr/rpi
 
 COPY expand.sh \
-	expand.sh \
 	mount.sh \
 	qemu-setup.sh \
 	qemu-cleanup.sh \
