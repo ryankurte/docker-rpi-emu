@@ -1,4 +1,5 @@
 #!/bin/bash
+#
 # Bootsrap qemu into the provided directory
 
 # Check inputs

@@ -1,5 +1,7 @@
 #!/bin/bash
-# Convenience script to unmount rpi file system
+#
+# Convenience script to unmount rpi file system mounted using the included mount.sh
+# helper script
 
 if [ "$#" -ne 1 ]; then 
     echo "Usage: $0 MOUNT"
