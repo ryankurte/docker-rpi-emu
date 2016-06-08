@@ -1,6 +1,6 @@
 # Docker emulation environment for Raspberry Pi
 
-Are you sick of long compile times on your Raspberry Pi?
+Are you sick of long compile times on your Raspberry Pi?  
 How much time have you spent loading Raspbian images from raspberrypi.org and hand customising them?  
 Have you been burned before by Ansible, setting up jobs that require too much human intervention to be useful?  
 Then this is the project for you!  
@@ -9,11 +9,17 @@ This project provides a dockerised (err, containerised) Qemu based emulated envi
 
 ## Components
 The docker container includes the required Qemu components to support emulation. This must be launched in privileged mode to allow mounting of loopback devices.  
+
 The container also includes a set of scripts to streamline the loading/customization/launch/unloading of Qemu environments, which are installed into the `/usr/rpi` directory on the device.
 
 ## Usage
 
-To get started with an Emulated CLI, check out this repository and run `make run-emu`. This will bootstrap a Raspbian image from raspberrypi.org, build the docker environment, and launch the emulated environment. For examples of how to customise this, checkout the [Makefile](Makefile).  
+### From the Repo
+
+To get started with an Emulated CLI, check out this repository and run `make run-emu`.  
+This will bootstrap a Raspbian image from raspberrypi.org, build the docker environment, and launch the emulated environment.   For examples of how to customise this, checkout the [Makefile](Makefile).  
+
+### From Dockerhub
 
 To get started with Docker, first pull the image with `docker pull ryankurte/docker-rpi-emu`. Ensure you have a Raspbian image handy (and you may want to back this up, it will be modified by anything you do in the emulated environment), then run the following command.  
 
