@@ -9,11 +9,7 @@ This project provides a dockerised (err, containerised) Qemu based emulated envi
 
 Check it out on [Github](https://github.com/ryankurte/docker-rpi-emu/) or [Dockerhub](https://hub.docker.com/r/ryankurte/docker-rpi-emu/)  
 
-## Components
-
-The docker container includes the required Qemu components to support emulation. This must be launched in privileged mode to allow mounting of loopback devices.  
-
-The container also includes a set of scripts to streamline the loading/customization/launch/unloading of Qemu environments, which are installed into the `/usr/rpi` directory on the device.  
+![Example](https://raw.github.com/ryankurte/docker-rpi-emu/gh_pages/screenshots/01.png)
 
 ## Usage
 
@@ -39,6 +35,14 @@ For example:
 `docker run -it --rm --privileged=true -v /Users/ryan/projects/docker-rpi-emu/images:/usr/rpi/images -w /usr/rpi ryankurte/rpi-emu /bin/bash -c './run.sh images/2016-05-27-raspbian-jessie-lite.img /bin/bash'`  
 
 Will mount the image directory `/Users/ryan/projects/docker-rpi-emu/images` and the image `2016-05-27-raspbian-jessie-lite.img` then run the command `/bin/bash` in the emulated environment.  
+
+
+## Components
+
+The docker container includes the required Qemu components to support emulation. This must be launched in privileged mode to allow mounting of loopback devices.  
+
+The container also includes a set of scripts to streamline the loading/customization/launch/unloading of Qemu environments, which are installed into the `/usr/rpi` directory on the device.  
+
 
 ## Commands
 
