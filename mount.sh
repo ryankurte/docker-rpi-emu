@@ -37,7 +37,7 @@ P2_INFO=($`fdisk -l $LOOP_BASE | grep ${LOOP_BASE}p2`)
 P1_START=${P1_INFO[1]}
 P2_START=${P2_INFO[1]}
 
-echo "Located partitions: p1 at $P1_START p2 at $P2_START"
+echo "Located partitions: p1 (/boot) at $P1_START and p2 (/) at $P2_START"
 
 # Cleanup loopbacks
 losetup -d $LOOP_BASE
