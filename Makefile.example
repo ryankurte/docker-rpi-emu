@@ -1,0 +1,64 @@
+# Example makefile demonstrating the use of the emulated container to prepare a build environment
+# This makefile is standalone, and can be used as the basis of projects that build applications or images for the RPi
+
+DATE=2016-05-27
+
+DIST=$(DATE)-raspbian-jessie-lite
+ZIP=$(DIST).zip
+IMAGE=$(DIST).img
+
+PATH=http://vx2-downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2016-05-31/$(ZIP)
+CWD=$(shell pwd)
+
+# Docker run arguments
+# Container must run in privileged mode to allow binding of loopback interfaces
+RUN_ARGS=-it --rm --privileged=true -v $(CWD)/images:/usr/rpi/images -v $(CWD)/resources:/usr/rpi/resources -w /usr/rpi ryankurte/docker-rpi-emu
+
+# Internal container mount directory
+MOUNT_DIR=/media/rpi
+
+# Build the docker image
+pull:
+	@docker pull ryankurte/docker-rpi-emu
+
+# Bootstrap a RPI image into the images directory
+bootstrap: images/$(IMAGE)
+
+# Fetch the RPI image from the path above
+images/$(IMAGE):
+	@mkdir -p images
+	@wget -O images/$(ZIP) -c $(PATH)
+	@unzip -d images/ images/$(ZIP)
+	@touch $@
+
+# Launch the docker image without running any of the utility scripts
+run: pull bootstrap
+	@docker run $(RUN_ARGS) /bin/bash 
+
+# Launch the docker image into an emulated session
+run-emu: pull bootstrap
+	@docker run $(RUN_ARGS) /bin/bash -c './run.sh images/$(IMAGE)'
+
+# Build some fake resources to copy / execute
+resources: resources/setup.sh
+resources/setup.sh:
+	@mkdir -p resources
+	@echo "#!/bin/bash" > resources/setup.sh
+	@echo "echo Executing example setup script" >> resources/setup.sh
+	@echo "uname -a" >> resources/setup.sh
+	@chmod +x resources/setup.sh
+
+# Copy files from local resources directory into image /usr/resources
+# Note that the resources directory is mapped to the container as a volume in the RUN_ARGS variable above
+copy: pull bootstrap resources
+	@echo Copying files
+	@docker run $(RUN_ARGS) /bin/bash -c 'mkdir $(MOUNT_DIR) && \
+										./mount.sh images/$(IMAGE) $(MOUNT_DIR) && \
+										cp -Rv /usr/rpi/resources $(MOUNT_DIR)/usr/; \
+										./unmount.sh $(MOUNT_DIR)'
+
+# Run a command inside the qemu environment
+setup: copy
+	@docker run $(RUN_ARGS) /bin/bash -c './run.sh images/$(IMAGE) /usr/resources/setup.sh'
+
+

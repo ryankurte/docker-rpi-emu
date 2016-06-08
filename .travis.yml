@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+  - sudo make test
+
+cache:
+  directories:
+  - images/*.img

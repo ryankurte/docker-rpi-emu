@@ -1,5 +1,8 @@
 #!/bin/bash
+#
 # Convenience script to manage qemu inside docker container
+# Chains the provided helper scripts to mount the image, bootstrap qemu, run a command
+# and tear down the environment correctly.
 
 if [ "$#" -ne 1 ] && [ "$#" -ne 2 ]; then 
     echo "Usage: $0 IMAGE MOUNT [COMMAND]"
