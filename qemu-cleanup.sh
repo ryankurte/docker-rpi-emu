@@ -1,12 +1,28 @@
 #!/bin/bash
 # Bootsrap qemu into the provided directory
 
+# Check inputs
+if [ "$#" -ne 1 ]; then 
+    echo "Usage: $0 MOUNT"
+    echo "MOUNT - mount location in the file system"
+    exit
+fi
+
 echo "Cleaning up Qemu"
 
-# Remove preload file
-mv $1/etc/ld.so.preload $1/etc/ld.so.preload.old
-touch $1/etc/ld.so.preload
+PRELOAD_FILE=$1/etc/ld.so.preload
+
+# Revert to original preload file (if backup exists)
+if [ ! -f $PRELOAD_FILE ]; then
+	rm $PRELOAD_FILE
+	mv $PRELOAD_FILE.old $PRELOAD_FILE
+fi
+
+
+
+QEMU_BIN=$1/usr/bin/qemu-arm-static
 
 # Remove binary interpreter
-#rm $1/usr/bin/qemu-arm-static
-
+if [ ! -f $QEMU_BIN ]; then
+	rm $QEMU_BIN
+fi

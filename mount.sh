@@ -1,5 +1,27 @@
 #!/bin/bash
 
+# Check inputs
+if [ "$#" -ne 2 ]; then 
+    echo "Usage: $0 IMAGE MOUNT"
+    echo "IMAGE - raspberry pi .img file"
+    echo "MOUNT - mount location in the file system"
+    exit
+fi
+
+if [ ! -f $1 ]; then
+	echo "Image file $1 does not exist"
+	exit 1
+fi
+
+if [ ! -d $2 ]; then
+	echo "Mount point $2 does not exist"
+	exit 2
+fi
+
+echo "Attempting to mount $1 to $2"
+
+set -e
+
 # Attach loopback device
 LOOP_BASE=`losetup -f --show $1`
 
@@ -26,7 +48,6 @@ mount $1 -o loop,offset=$(($P1_START*$BLOCK_SIZE)),rw $2
 mount $1 -o loop,offset=$(($P2_START*$BLOCK_SIZE)),rw $2/boot
 
 echo "Mounted to $2 and $2/boot"
-
 
 
 

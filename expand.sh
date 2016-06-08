@@ -1,4 +1,12 @@
 #!/bin/bash
+# Expand partition 2 of an ISO image the specified amount
+
+if [ "$#" -ne 2 ]; then 
+    echo "Usage: $0 IMAGE SIZE"
+    echo "IMAGE - raspberry pi .img file"
+    echo "SIZE - size in mb to expand image"
+    exit
+fi
 
 # Attach loopback device
 LOOP_BASE=`losetup -f --show $1`
