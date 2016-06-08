@@ -8,26 +8,32 @@ Then this is the project for you!
 This project provides a dockerised (err, containerised) Qemu based emulated environment for the Raspberry Pi, useful for building Raspberry Pi based projects on x86/x64 computers, and for customising Raspbian images for distribution.
 
 ## Components
+
 The docker container includes the required Qemu components to support emulation. This must be launched in privileged mode to allow mounting of loopback devices.  
 
-The container also includes a set of scripts to streamline the loading/customization/launch/unloading of Qemu environments, which are installed into the `/usr/rpi` directory on the device.
+The container also includes a set of scripts to streamline the loading/customization/launch/unloading of Qemu environments, which are installed into the `/usr/rpi` directory on the device.  
 
 ## Usage
 
 ### From the Repo
 
-To get started with an Emulated CLI, check out this repository and run `make run-emu`.  
-This will bootstrap a Raspbian image from raspberrypi.org, build the docker environment, and launch the emulated environment.   For examples of how to customise this, checkout the [Makefile](Makefile).  
+To get started with an Emulated CLI, check out this repository with `git clone git@github.com:ryankurte/docker-rpi-emu.git`, change directories with `cd docker-rpi-emu` and run `make run-emu`.  
+
+This will bootstrap a Raspbian image from raspberrypi.org, build the docker image, and launch the emulated environment.  
+
+For examples of how to customise this, checkout the [Makefile](Makefile).  
 
 ### From Dockerhub
 
-To get started with Docker, first pull the image with `docker pull ryankurte/docker-rpi-emu`. Ensure you have a Raspbian image handy (and you may want to back this up, it will be modified by anything you do in the emulated environment), then run the following command.  
+To get started with Docker, first pull the image with `docker pull ryankurte/docker-rpi-emu`.  
+Ensure you have a Raspbian image handy (and you may want to back this up, it will be modified by anything you do in the emulated environment), then run the following command.  
 
 `docker run -it --rm --privileged=true -v IMAGE_LOCATION:/usr/rpi/images -w /usr/rpi ryankurte/rpi-emu /bin/bash -c './run.sh images/IMAGE_NAME [COMMAND]'`  
 
 Where IMAGE_LOCATION is the directory containing your Raspbian image to be mounted, IMAGE_NAME is the name of the image to be used, and [COMMAND] is the optional command to be executed (inside the image).  
 
 For example:  
+
 `docker run -it --rm --privileged=true -v /Users/ryan/projects/docker-rpi-emu/images:/usr/rpi/images -w /usr/rpi ryankurte/rpi-emu /bin/bash -c './run.sh images/2016-05-27-raspbian-jessie-lite.img /bin/bash'`  
 
 Will mount the image directory `/Users/ryan/projects/docker-rpi-emu/images` and the image `2016-05-27-raspbian-jessie-lite.img` then run the command `/bin/bash` in the emulated environment.  
