@@ -15,7 +15,11 @@ Check it out on [Github](https://github.com/ryankurte/docker-rpi-emu/) or [Docke
 
 ### From the Repo
 
-To get started with an Emulated CLI, check out this repository with `git clone git@github.com:ryankurte/docker-rpi-emu.git`, change directories with `cd docker-rpi-emu` and run `make run-emu`.  
+To get started with an Emulated CLI:
+
+1. Run `git clone git@github.com:ryankurte/docker-rpi-emu.git` check out this repository
+2. Run `cd docker-rpi-emu` to change into the directory
+3. Run `make run-emu` to launch the emulated environment
 
 This will bootstrap a Raspbian image from raspberrypi.org, build the docker image, and launch the emulated environment.  
 
@@ -24,6 +28,7 @@ For examples of how to customise this, checkout the [Makefile](Makefile).
 ### From Dockerhub
 
 To get started with Docker, first pull the image with `docker pull ryankurte/docker-rpi-emu`.  
+
 Ensure you have a Raspbian image handy (and you may want to back this up, it will be modified by anything you do in the emulated environment), then run the following command.  
 
 `docker run -it --rm --privileged=true -v IMAGE_LOCATION:/usr/rpi/images -w /usr/rpi ryankurte/rpi-emu /bin/bash -c './run.sh images/IMAGE_NAME [COMMAND]'`  
