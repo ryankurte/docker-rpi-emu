@@ -21,12 +21,6 @@ RUN apt-get clean && \
 RUN mkdir -p /usr/rpi
 WORKDIR /usr/rpi
 
-COPY expand.sh \
-	mount.sh \
-	qemu-setup.sh \
-	qemu-cleanup.sh \
-	unmount.sh \
-	run.sh \
-	/usr/rpi/
+COPY scripts/* /usr/rpi/
 
 
