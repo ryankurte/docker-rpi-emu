@@ -9,7 +9,7 @@ DIST=$(DATE)-raspbian-jessie-lite
 ZIP=$(DIST).zip
 IMAGE=$(DIST).img
 
-PATH=http://vx2-downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2016-05-31/$(ZIP)
+DL_PATH=http://vx2-downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2016-05-31/$(ZIP)
 CWD=$(shell pwd)
 
 RUN_ARGS=-it --rm --privileged=true -v $(CWD)/images:/usr/rpi/images -w /usr/rpi ryankurte/docker-rpi-emu
@@ -27,7 +27,7 @@ bootstrap: images/$(IMAGE)
 images/$(IMAGE):
 	@echo "Pulling Raspbian image"
 	@mkdir -p images
-	wget -O images/$(ZIP) -c $(PATH)
+	wget -O images/$(ZIP) -c $(DL_PATH)
 	@unzip -d images/ images/$(ZIP)
 	@touch $@
 
