@@ -11,7 +11,8 @@ RUN apt-get install -y --allow-unauthenticated \
     qemu \
     qemu-user-static \ 
     binfmt-support \
-    parted
+    parted \
+    vim
 
 # Clean up after apt
 RUN apt-get clean && \
