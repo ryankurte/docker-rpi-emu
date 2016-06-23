@@ -1,11 +1,20 @@
 # Docker emulation environment for Raspberry Pi
 
+**Note that this does not appear to be working under linux, only OSX**
+I am not sure /why/, but the qemu-arm-static binary seems to freak out when in a container on debian at least.  
+If you are running linux you could download the same tools and run these scripts locally.  
+And if you have any idea why that weirdness would happen, I would love to know how to fix it!
+
+----------
+
 Are you sick of long compile times on your Raspberry Pi?  
 How much time have you spent loading Raspbian images from raspberrypi.org and hand customising them?  
 Have you been burned before by Ansible, setting up jobs that require too much human intervention to be useful?  
 Then this is the project for you!  
 
 This project provides a dockerised (err, containerised) Qemu based emulated environment for the Raspberry Pi, useful for building Raspberry Pi based projects on x86/x64 computers, and for customising Raspbian images for distribution.  
+
+Please note that this is very new. It works pretty well as an emulator, but imaging can have some strange unintended side effects.  
 
 Check it out on [Github](https://github.com/ryankurte/docker-rpi-emu/) or [Dockerhub](https://hub.docker.com/r/ryankurte/docker-rpi-emu/)  
 
