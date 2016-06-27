@@ -12,6 +12,10 @@ IMAGE=$(DIST).img
 DL_PATH=http://vx2-downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2016-05-31/$(ZIP)
 CWD=$(shell pwd)
 
+# Docker arguments
+# Interactive mode, remove container after running, privileged mode for loopback access
+# Mount images to /usr/rpi/images to access image files from container
+# Change working directory to /usr/rpi (which is loaded with the helper scripts)
 RUN_ARGS=-it --rm --privileged=true -v $(CWD)/images:/usr/rpi/images -w /usr/rpi ryankurte/docker-rpi-emu
 MOUNT_DIR=/media/rpi
 
