@@ -39,7 +39,7 @@ images/$(IMAGE):
 # TODO: implement expand script to detect partition sizes
 expand: build bootstrap
 	dd if=/dev/zero bs=1M count=1024 >> images/$(IMAGE)
-	echo "EXPAND SCRIPT IS NOT YET IMPLEMENTED"
+	@docker run $(RUN_ARGS) ./expand.sh images/$(IMAGE) 1024
 
 # Launch the docker image without running any of the utility scripts
 run: build bootstrap

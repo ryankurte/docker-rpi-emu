@@ -8,10 +8,14 @@ if [ "$#" -ne 2 ]; then
     exit
 fi
 
+echo "Starting Expansion" && echo
+
+fdisk -lu $1
+
 # Attach loopback device
 LOOP_BASE=`losetup -f --show $1`
 
-echo "Attached base loopback at: $LOOP_BASE"
+echo && echo "Attached base loopback at: $LOOP_BASE"
 
 BLOCK_SIZE=512
 
@@ -23,17 +27,24 @@ P2_INFO=($`fdisk -l $LOOP_BASE | grep ${LOOP_BASE}p2`)
 
 P2_START=${P2_INFO[1]}
 
-echo "Located ${LOOP_BASE}p2 at $P2_START"
+echo "Located partition 2 at $P2_START"
 
 # Attach second loopback device
 LOOP_P2=`losetup -f --show -o $(($P2_START*BLOCK_SIZE)) $1`
 
-echo "Attached p2 at $LOOP_P2"
+echo "Attached p2 at $LOOP_P2" && echo
 
-# TODO: Repartition
-parted --script /dev/loop0 \
-    print \
-    q
+parted $LOOP_BASE print
+
+PARTITION_INFO=($`parted $LOOP_BASE print -m`)
+
+RESIZE_END=`echo ${PARTITION_INFO[1]} | grep -oP "(?<=${LOOP_BASE}:)[0-9.]+"`
+RESIZE_START=`echo ${PARTITION_INFO[4]} | grep -oP "(?<=2:)[0-9.]+"`
+echo "Making new partition from ${RESIZE_START}MB to ${RESIZE_END}MB"
+
+# Repartition
+parted $LOOP_BASE --script rm 2
+parted $LOOP_BASE --script mkpart primary ${RESIZE_START} ${RESIZE_END}
 
 # Check and resize file system
 e2fsck -f $LOOP_P2
