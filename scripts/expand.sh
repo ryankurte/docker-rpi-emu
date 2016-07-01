@@ -30,7 +30,7 @@ P2_START=${P2_INFO[1]}
 echo "Located partition 2 at $P2_START"
 
 # Attach second loopback device
-LOOP_P2=`losetup -f --show -o $(($P2_START*BLOCK_SIZE)) $1`
+LOOP_P2=`losetup -f --show -o $(($P2_START*$BLOCK_SIZE)) $1`
 
 echo "Attached p2 at $LOOP_P2" && echo
 
