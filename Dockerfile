@@ -15,8 +15,8 @@ RUN apt-get install -y --allow-unauthenticated \
     vim
 
 # Clean up after apt
-RUN apt-get clean && \
-	rm -rf /var/lib/apt
+RUN apt-get clean
+RUN rm -rf /var/lib/apt
 
 # Setup working directory
 RUN mkdir -p /usr/rpi
