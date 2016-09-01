@@ -2,7 +2,7 @@
 
 Are you sick of long compile times on your Raspberry Pi?  
 How much time have you spent loading Raspbian images from raspberrypi.org and hand customising them?  
-Do you too wish you could run a raspberry pi OS in a docker container against a persistant .img file inside xhyve on macOS?
+Do you too wish you could run Raspberry Pi apps in a docker container against a persistant .img file inside xhyve on macOS?
 Then this is the project for you!  
 
 This project provides a dockerised (err, containerised) Qemu based emulated environment for the Raspberry Pi, useful for building Raspberry Pi based projects on x64 computers, and for customising Raspbian images for distribution.  
