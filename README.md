@@ -35,13 +35,13 @@ To get started with Docker, first pull the image with `docker pull ryankurte/doc
 
 Ensure you have a Raspbian image handy (and you may want to back this up, it will be modified by anything you do in the emulated environment), then run the following command.  
 
-`docker run -it --rm --privileged=true -v IMAGE_LOCATION:/usr/rpi/images -w /usr/rpi ryankurte/rpi-emu /bin/bash -c './run.sh images/IMAGE_NAME [COMMAND]'`  
+`docker run -it --rm --privileged=true -v IMAGE_LOCATION:/usr/rpi/images -w /usr/rpi ryankurte/docker-rpi-emu /bin/bash -c './run.sh images/IMAGE_NAME [COMMAND]'`  
 
 Where IMAGE_LOCATION is the directory containing your Raspbian image to be mounted, IMAGE_NAME is the name of the image to be used, and [COMMAND] is the optional command to be executed (inside the image).  
 
 For example:  
 
-`docker run -it --rm --privileged=true -v /Users/ryan/projects/docker-rpi-emu/images:/usr/rpi/images -w /usr/rpi ryankurte/rpi-emu /bin/bash -c './run.sh images/2016-05-27-raspbian-jessie-lite.img /bin/bash'`  
+`docker run -it --rm --privileged=true -v /Users/ryan/projects/docker-rpi-emu/images:/usr/rpi/images -w /usr/rpi ryankurte/docker-rpi-emu /bin/bash -c './run.sh images/2016-05-27-raspbian-jessie-lite.img /bin/bash'`  
 
 Will mount the image directory `/Users/ryan/projects/docker-rpi-emu/images` and the image `2016-05-27-raspbian-jessie-lite.img` then run the command `/bin/bash` in the emulated environment.  
 
