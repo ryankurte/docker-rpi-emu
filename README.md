@@ -2,12 +2,13 @@
 
 Are you sick of long compile times on your Raspberry Pi?  
 How much time have you spent loading Raspbian images from raspberrypi.org and hand customising them?  
-Have you been burned before by Ansible, setting up jobs that require too much human intervention to be useful?  
+Do you too wish you could run a raspberry pi OS in a docker container against a persistant .img file inside xhyve on macOS?
 Then this is the project for you!  
 
-This project provides a dockerised (err, containerised) Qemu based emulated environment for the Raspberry Pi, useful for building Raspberry Pi based projects on x86/x64 computers, and for customising Raspbian images for distribution.  
+This project provides a dockerised (err, containerised) Qemu based emulated environment for the Raspberry Pi, useful for building Raspberry Pi based projects on x64 computers, and for customising Raspbian images for distribution.  
 
-Please note that this is very new. It works pretty well as an emulator, but imaging can have some strange unintended side effects.  
+Please note that this is very new. It works pretty well uner linux and OSX for emulation and for creating images to deploy, but YMMV.  
+It's also not a very good docker container, requiring priveledged mode to mount loopback adaptors and qemu on the docker host. All the scripts here can be run on native linux if you're that way inclined.
 
 Check it out on [Github](https://github.com/ryankurte/docker-rpi-emu/) or [Dockerhub](https://hub.docker.com/r/ryankurte/docker-rpi-emu/)  
 
@@ -15,7 +16,7 @@ Check it out on [Github](https://github.com/ryankurte/docker-rpi-emu/) or [Docke
 
 ## Usage
 
-Note that your host machine needs to have qemu installed. Using Docker for Mac this comes as standard, in Debian you will need to install the qemu and qemu-user-static packages.   
+Note that your docker host machine must have qemu installed. Using Docker for Mac the host environment includes this as standard (OSX docker-machines however do not come with qemu), in Debian you will need to install the qemu and qemu-user-static packages.  
 
 ### From the Repo
 
