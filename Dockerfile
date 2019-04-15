@@ -13,7 +13,9 @@ RUN apt-get install -y --allow-unauthenticated \
     binfmt-support \
     parted \
     vim \
-    sudo
+    sudo \
+    wget \
+    cron
 
 # Clean up after apt
 RUN apt-get clean
