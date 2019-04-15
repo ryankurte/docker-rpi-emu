@@ -12,7 +12,8 @@ RUN apt-get install -y --allow-unauthenticated \
     qemu-user-static \ 
     binfmt-support \
     parted \
-    vim
+    vim \
+    sudo
 
 # Clean up after apt
 RUN apt-get clean
@@ -21,6 +22,9 @@ RUN rm -rf /var/lib/apt
 # Setup working directory
 RUN mkdir -p /usr/rpi
 WORKDIR /usr/rpi
+
+# Setup home directory
+RUN mkdir -p /home/pi
 
 COPY scripts/* /usr/rpi/
 
