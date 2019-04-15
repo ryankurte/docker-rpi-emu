@@ -15,7 +15,8 @@ RUN apt-get install -y --allow-unauthenticated \
     vim \
     sudo \
     wget \
-    cron
+    cron \
+    gnupg2
 
 # Clean up after apt
 RUN apt-get clean
