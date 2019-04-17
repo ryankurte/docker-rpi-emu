@@ -42,9 +42,9 @@ Where IMAGE_LOCATION is the directory containing your Raspbian image to be mount
 
 For example:  
 
-`docker run -it --rm --privileged=true -v /Users/ryan/projects/docker-rpi-emu/images:/usr/rpi/images -w /usr/rpi ryankurte/docker-rpi-emu /bin/bash -c './run.sh images/2016-05-27-raspbian-jessie-lite.img /bin/bash'`  
+`docker run -it --rm --privileged=true -v /Users/ryan/projects/docker-rpi-emu/images:/usr/rpi/images -w /usr/rpi ryankurte/docker-rpi-emu /bin/bash -c './run.sh images/2019-04-08-raspbian-stretch-lite.img /bin/bash'`
 
-Will mount the image directory `/Users/ryan/projects/docker-rpi-emu/images` and the image `2016-05-27-raspbian-jessie-lite.img` then run the command `/bin/bash` in the emulated environment.  
+Will mount the image directory `/Users/ryan/projects/docker-rpi-emu/images` and the image `2019-04-08-raspbian-stretch-lite.img` then run the command `/bin/bash` in the emulated environment.
 
 
 ## Components

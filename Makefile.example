@@ -1,13 +1,13 @@
 # Example makefile demonstrating the use of the emulated container to prepare a build environment
 # This makefile is standalone, and can be used as the basis of projects that build applications or images for the RPi
 
-DATE=2016-05-27
+DATE=2019-04-08
 
-DIST=$(DATE)-raspbian-jessie-lite
+DIST=$(DATE)-raspbian-stretch-lite
 ZIP=$(DIST).zip
 IMAGE=$(DIST).img
 
-PATH=http://vx2-downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2016-05-31/$(ZIP)
+PATH=http://director.downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-04-09/$(ZIP)
 CWD=$(shell pwd)
 
 # Docker run arguments
