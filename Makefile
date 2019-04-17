@@ -16,15 +16,15 @@ CWD=$(shell pwd)
 # Interactive mode, remove container after running, privileged mode for loopback access
 # Mount images to /usr/rpi/images to access image files from container
 # Change working directory to /usr/rpi (which is loaded with the helper scripts)
-RUN_ARGS=-it --rm --privileged=true -v $(CWD)/images:/usr/rpi/images -w /usr/rpi ounishatem/docker-rpi-emu
+RUN_ARGS=-it --rm --privileged=true -v $(CWD)/images:/usr/rpi/images -w /usr/rpi ryankurte/docker-rpi-emu
 MOUNT_DIR=/media/rpi
 
 # Build the docker image
 build:
 	@echo "Building base docker image"
-	@docker build -t ounishatem/docker-rpi-emu .
+	@docker build -t ryankurte/docker-rpi-emu .
 
-# Bootstrap an RPI image into the images directory
+# Bootstrap a RPI image into the images directory
 bootstrap: images/$(IMAGE)
 
 # Fetch the RPI image from the path above
