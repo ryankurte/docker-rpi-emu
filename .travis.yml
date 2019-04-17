@@ -7,7 +7,7 @@ before_install:
     - sudo apt-get update
 
 install:
-    - sudo apt-get install -y qemu qemu-user-static wget
+    - sudo apt-get install -y qemu qemu-user-static
 
 script:
   - make test
