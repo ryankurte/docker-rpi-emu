@@ -3,28 +3,28 @@
 # 
 # For an example using this in a project, see Makefile.example
 
-DATE=2019-04-08
+DATE=2016-05-27
 
-DIST=$(DATE)-raspbian-stretch-lite
+DIST=$(DATE)-raspbian-jessie-lite
 ZIP=$(DIST).zip
 IMAGE=$(DIST).img
 
-DL_PATH=http://director.downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-04-09/$(ZIP)
+DL_PATH=http://vx2-downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2016-05-31/$(ZIP)
 CWD=$(shell pwd)
 
 # Docker arguments
 # Interactive mode, remove container after running, privileged mode for loopback access
 # Mount images to /usr/rpi/images to access image files from container
 # Change working directory to /usr/rpi (which is loaded with the helper scripts)
-RUN_ARGS=-it --rm --privileged=true -v $(CWD)/images:/usr/rpi/images -w /usr/rpi ryankurte/docker-rpi-emu
+RUN_ARGS=-it --rm --privileged=true -v $(CWD)/images:/usr/rpi/images -w /usr/rpi ounishatem/docker-rpi-emu
 MOUNT_DIR=/media/rpi
 
 # Build the docker image
 build:
 	@echo "Building base docker image"
-	@docker build -t ryankurte/docker-rpi-emu .
+	@docker build -t ounishatem/docker-rpi-emu .
 
-# Bootstrap a RPI image into the images directory
+# Bootstrap an RPI image into the images directory
 bootstrap: images/$(IMAGE)
 
 # Fetch the RPI image from the path above
