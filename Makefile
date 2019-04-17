@@ -9,7 +9,7 @@ DIST=$(DATE)-raspbian-stretch-lite
 ZIP=$(DIST).zip
 IMAGE=$(DIST).img
 
-PATH=http://director.downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-04-09/$(ZIP)
+DL_PATH=http://director.downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-04-09/$(ZIP)
 CWD=$(shell pwd)
 
 # Docker arguments
