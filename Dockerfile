@@ -18,7 +18,9 @@ RUN apt-get install -y --allow-unauthenticated \
     cron \
     gnupg2 \
     apt-utils \
-    curl
+    curl \
+    python \
+    python3
 
 # Clean up after apt
 RUN apt-get clean
