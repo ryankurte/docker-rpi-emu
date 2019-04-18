@@ -20,7 +20,9 @@ RUN apt-get install -y --allow-unauthenticated \
     apt-utils \
     curl \
     python \
-    python3
+    python-pip \
+    python3 \
+    python3-pip
 
 # Clean up after apt
 RUN apt-get clean
