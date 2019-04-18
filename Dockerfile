@@ -22,7 +22,8 @@ RUN apt-get install -y --allow-unauthenticated \
     python \
     python-pip \
     python3 \
-    python3-pip
+    python3-pip \
+    net-tools
 
 # Clean up after apt
 RUN apt-get clean
