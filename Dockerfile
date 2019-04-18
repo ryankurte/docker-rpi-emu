@@ -16,7 +16,9 @@ RUN apt-get install -y --allow-unauthenticated \
     sudo \
     wget \
     cron \
-    gnupg2
+    gnupg2 \
+    apt-utils \
+    curl
 
 # Clean up after apt
 RUN apt-get clean
