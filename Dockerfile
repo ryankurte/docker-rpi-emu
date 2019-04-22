@@ -13,17 +13,7 @@ RUN apt-get install -y --allow-unauthenticated \
     binfmt-support \
     parted \
     vim \
-    sudo \
-    wget \
-    cron \
-    gnupg2 \
-    apt-utils \
-    curl \
-    python \
-    python-pip \
-    python3 \
-    python3-pip \
-    net-tools
+    sudo
 
 # Clean up after apt
 RUN apt-get clean
