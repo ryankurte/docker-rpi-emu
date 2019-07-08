@@ -18,3 +18,9 @@ touch $1/etc/ld.so.preload
 # Copy binary interpreter
 cp /usr/bin/qemu-arm-static $1/usr/bin
 
+# Mount running dirs
+mount --bind /proc $1/proc/
+mount --bind /dev $1/dev/
+mount --bind /sys $1/sys/
+mount --bind /dev/pts $1/dev/pts
+
