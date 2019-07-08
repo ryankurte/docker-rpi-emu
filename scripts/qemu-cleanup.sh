@@ -19,11 +19,16 @@ if [ ! -f $PRELOAD_FILE ]; then
 	mv $PRELOAD_FILE.old $PRELOAD_FILE
 fi
 
-
-
 QEMU_BIN=$1/usr/bin/qemu-arm-static
 
 # Remove binary interpreter
 if [ ! -f $QEMU_BIN ]; then
 	rm $QEMU_BIN
 fi
+
+# Unmount dirs
+umount $1/dev/pts
+umount $1/sys/
+umount $1/dev/
+umount $1/proc/
+
