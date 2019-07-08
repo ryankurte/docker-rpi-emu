@@ -3,13 +3,13 @@
 # 
 # For an example using this in a project, see Makefile.example
 
-DATE=2016-05-27
+DATE=2019-06-20
 
-DIST=$(DATE)-raspbian-jessie-lite
+DIST=$(DATE)-raspbian-buster-lite
 ZIP=$(DIST).zip
 IMAGE=$(DIST).img
 
-DL_PATH=http://vx2-downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2016-05-31/$(ZIP)
+DL_PATH=http://director.downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-06-24/$(ZIP)
 CWD=$(shell pwd)
 
 # Docker arguments

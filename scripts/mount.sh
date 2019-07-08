@@ -53,7 +53,7 @@ echo "Closed loopback $LOOP_BASE"
 # Mount image with the offsets determined above
 mkdir -p $2
 mount $1 -o loop,offset=$(($P2_START*$BLOCK_SIZE)),rw $2
-mount $1 -o loop,offset=$(($P1_START*$BLOCK_SIZE)),rw $2/boot
+mount $1 -o loop,offset=$(($P1_START*$BLOCK_SIZE)),sizelimit=$((($P2_START-$P1_START)*$BLOCK_SIZE)),rw $2/boot
 
 echo "Mounted to $2 and $2/boot"
 
