@@ -26,34 +26,9 @@ echo "Attempting to mount $1 to $2"
 
 set -e
 
-# Loopback mount is used to determine block offset for partition mounting
-
-# Attach loopback device
-LOOP_BASE=`losetup -f --show $1`
-
-echo "Attached base loopback at: $LOOP_BASE"
-
-# TODO: could grab this from fdisk instead of hard coding
-BLOCK_SIZE=512
-
-# Fetch and parse partition info
-P1_INFO=($`fdisk -l $LOOP_BASE | grep ${LOOP_BASE}p1`)
-P2_INFO=($`fdisk -l $LOOP_BASE | grep ${LOOP_BASE}p2`)
-
-# Locate partition start sectors
-P1_START=${P1_INFO[1]}
-P2_START=${P2_INFO[1]}
-
-echo "Located partitions: p1 (/boot) at $P1_START and p2 (/) at $P2_START"
-
-# Cleanup loopbacks
-losetup -d $LOOP_BASE
-echo "Closed loopback $LOOP_BASE"
-
-# Mount image with the offsets determined above
-mkdir -p $2
-mount $1 -o loop,offset=$(($P2_START*$BLOCK_SIZE)),rw $2
-mount $1 -o loop,offset=$(($P1_START*$BLOCK_SIZE)),sizelimit=$((($P2_START-$P1_START)*$BLOCK_SIZE)),rw $2/boot
+LOOP=$(losetup --show -fP "${1}")
+mount "${LOOP}p2" "${2}"
+mount "${LOOP}p1" "${2}/boot/"
 
 echo "Mounted to $2 and $2/boot"
 
