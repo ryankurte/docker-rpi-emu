@@ -47,7 +47,7 @@ parted $LOOP_BASE --script rm 2
 parted $LOOP_BASE --script mkpart primary ${RESIZE_START} ${RESIZE_END}
 
 # Check and resize file system
-e2fsck -f $LOOP_P2
+e2fsck -p -f $LOOP_P2
 resize2fs $LOOP_P2
 
 # Cleanup loopbacks
